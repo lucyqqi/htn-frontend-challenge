@@ -1,36 +1,30 @@
 import { useState, useEffect } from 'react'
-import styled from '@emotion/styled'
+import { EventCard } from './components/EventCard'
+import { Container, PageHeading } from './styles/theme'
+import './styles/global.css'
 
-const Container = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-`
-
-const EventCard = styled.div`
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 20px;
-  margin: 10px 0;
-  background: white;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-`
-
+/**
+ * Main App component that manages and displays hackathon events
+ * Implements data fetching and event rendering with proper error handling
+ */
 function App() {
+  // State management
   const [events, setEvents] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
+  // Fetch events on component mount
   useEffect(() => {
     const fetchEvents = async () => {
       try {
         const response = await fetch('https://api.hackthenorth.com/v3/events')
+        if (!response.ok) throw new Error('Failed to fetch events')
         const data = await response.json()
         setEvents(data)
-        setLoading(false)
       } catch (error) {
         console.error('Error fetching events:', error)
-        setError('Failed to fetch events')
+        setError('Failed to fetch events. Please try again later.')
+      } finally {
         setLoading(false)
       }
     }
@@ -38,23 +32,37 @@ function App() {
     fetchEvents()
   }, [])
 
-  if (loading) return <div>Loading...</div>
-  if (error) return <div>{error}</div>
+  // Render loading state
+  if (loading) {
+    return (
+      <Container>
+        <div role="alert" aria-busy="true" aria-live="polite">
+          Loading events...
+        </div>
+      </Container>
+    )
+  }
 
+  // Render error state
+  if (error) {
+    return (
+      <Container>
+        <div role="alert" aria-live="assertive">
+          {error}
+        </div>
+      </Container>
+    )
+  }
+
+  // Main render
   return (
     <Container>
-      <h1>Hackathon Events</h1>
-      {events.map((event) => (
-        <EventCard key={event.id}>
-          <h2>{event.name}</h2>
-          <p>Type: {event.event_type}</p>
-          <p>Time: {new Date(event.start_time).toLocaleString()}</p>
-          {event.description && <p>{event.description}</p>}
-          {event.speakers.length > 0 && (
-            <p>Speakers: {event.speakers.map(speaker => speaker.name).join(', ')}</p>
-          )}
-        </EventCard>
-      ))}
+      <PageHeading>Hackathon Events</PageHeading>
+      <div role="list" aria-label="Hackathon events">
+        {events.map((event) => (
+          <EventCard key={event.id} event={event} />
+        ))}
+      </div>
     </Container>
   )
 }
