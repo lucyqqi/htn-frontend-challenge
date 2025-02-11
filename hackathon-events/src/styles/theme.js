@@ -4,14 +4,21 @@ import styled from '@emotion/styled'
  * Container component for consistent layout and responsive design
  */
 export const Container = styled.main`
-  width: 70%;
+  width: 55%; /* Reduced from 70% to 55% */
   margin: 0 auto;
   padding: 80px 20px 40px; /* Added top padding for navbar */
-  
-  @media (max-width: 768px) {
-    width: 95%;
-    padding: 70px 15px 20px;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally */
+ 
+`
+
+export const EventsGrid = styled.div`
+  width: 100%; /* Take full width of container */
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Consistent spacing between cards */
+  align-items: center; /* Center cards */
 `
 
 /**

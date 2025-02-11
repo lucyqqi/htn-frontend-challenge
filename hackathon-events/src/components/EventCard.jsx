@@ -10,6 +10,7 @@ const Card = styled.article`
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
+  cursor: pointer;
 
   &:hover {
     transform: translateY(-4px);
@@ -41,11 +42,16 @@ const SpeakerSection = styled.div`
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 `
 
-export const EventCard = ({ event }) => {
+export const EventCard = ({ event, onClick }) => {
   const { name, event_type, start_time, description, speakers } = event
 
   return (
-    <Card role="listitem" tabIndex={0}>
+    <Card 
+      role="listitem" 
+      tabIndex={0} 
+      onClick={onClick}
+      onKeyPress={(e) => e.key === 'Enter' && onClick()}
+    >
       <h2>{name}</h2>
       <EventType type={event_type}>{event_type.replace('_', ' ')}</EventType>
       

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { EventCard } from './components/EventCard'
+import { EventDetails } from './components/EventDetails'
 import { Navbar } from './components/Navbar'
 import { Container } from './styles/theme'
 import { useAuth } from './context/AuthContext'
@@ -14,6 +15,7 @@ function App() {
   const [events, setEvents] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [selectedEvent, setSelectedEvent] = useState(null)
   const { isAuthenticated } = useAuth()
 
   // Fetch events on component mount
@@ -76,11 +78,24 @@ function App() {
     <>
       <Navbar />
       <Container>
-        <div role="list" aria-label="Hackathon events">
-          {visibleEvents.map((event) => (
-            <EventCard key={event.id} event={event} />
-          ))}
-        </div>
+        {selectedEvent ? (
+          <EventDetails 
+            event={selectedEvent}
+            onBack={() => setSelectedEvent(null)}
+            onSelectEvent={setSelectedEvent}
+            allEvents={events}
+          />
+        ) : (
+          <div role="list" aria-label="Hackathon events">
+            {visibleEvents.map((event) => (
+              <EventCard 
+                key={event.id} 
+                event={event}
+                onClick={() => setSelectedEvent(event)}
+              />
+            ))}
+          </div>
+        )}
       </Container>
     </>
   )
