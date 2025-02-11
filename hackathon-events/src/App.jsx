@@ -20,7 +20,10 @@ function App() {
         const response = await fetch('https://api.hackthenorth.com/v3/events')
         if (!response.ok) throw new Error('Failed to fetch events')
         const data = await response.json()
-        setEvents(data)
+        
+        // Sort events by start_time
+        const sortedEvents = [...data].sort((a, b) => a.start_time - b.start_time)
+        setEvents(sortedEvents)
       } catch (error) {
         console.error('Error fetching events:', error)
         setError('Failed to fetch events. Please try again later.')
