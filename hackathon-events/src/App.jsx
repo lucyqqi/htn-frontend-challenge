@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { EventCard } from './components/EventCard'
-import { Container, PageHeading } from './styles/theme'
+import { Navbar } from './components/Navbar'
+import { Container } from './styles/theme'
+import { useAuth } from './context/AuthContext'
 import './styles/global.css'
 
 /**
@@ -12,6 +14,7 @@ function App() {
   const [events, setEvents] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const { isAuthenticated } = useAuth()
 
   // Fetch events on component mount
   useEffect(() => {
@@ -35,38 +38,51 @@ function App() {
     fetchEvents()
   }, [])
 
+  // Filter events based on authentication status
+  const visibleEvents = events.filter(event => 
+    isAuthenticated ? true : event.permission === 'public'
+  )
+
   // Render loading state
   if (loading) {
     return (
-      <Container>
-        <div role="alert" aria-busy="true" aria-live="polite">
-          Loading events...
-        </div>
-      </Container>
+      <>
+        <Navbar />
+        <Container>
+          <div role="alert" aria-busy="true" aria-live="polite">
+            Loading events...
+          </div>
+        </Container>
+      </>
     )
   }
 
   // Render error state
   if (error) {
     return (
-      <Container>
-        <div role="alert" aria-live="assertive">
-          {error}
-        </div>
-      </Container>
+      <>
+        <Navbar />
+        <Container>
+          <div role="alert" aria-live="assertive">
+            {error}
+          </div>
+        </Container>
+      </>
     )
   }
 
   // Main render
   return (
-    <Container>
-      <PageHeading>Hackathon Events</PageHeading>
-      <div role="list" aria-label="Hackathon events">
-        {events.map((event) => (
-          <EventCard key={event.id} event={event} />
-        ))}
-      </div>
-    </Container>
+    <>
+      <Navbar />
+      <Container>
+        <div role="list" aria-label="Hackathon events">
+          {visibleEvents.map((event) => (
+            <EventCard key={event.id} event={event} />
+          ))}
+        </div>
+      </Container>
+    </>
   )
 }
 

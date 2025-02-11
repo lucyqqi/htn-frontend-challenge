@@ -3,13 +3,14 @@ import styled from '@emotion/styled'
 /**
  * Container component for consistent layout and responsive design
  */
-export const Container = styled.div`
-  max-width: 55%;
+export const Container = styled.main`
+  width: 70%;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 80px 20px 40px; /* Added top padding for navbar */
   
   @media (max-width: 768px) {
-    padding: 20px 15px;
+    width: 95%;
+    padding: 70px 15px 20px;
   }
 `
 
