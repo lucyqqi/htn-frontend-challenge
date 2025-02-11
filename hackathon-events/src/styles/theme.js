@@ -1,4 +1,4 @@
-import { styled } from '@emotion/styled'
+import styled from '@emotion/styled'
 
 /**
  * Container component for consistent layout and responsive design
