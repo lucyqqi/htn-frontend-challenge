@@ -4,7 +4,7 @@ import styled from '@emotion/styled'
  * Container component for consistent layout and responsive design
  */
 export const Container = styled.div`
-  max-width: 900px;
+  max-width: 55%;
   margin: 0 auto;
   padding: 40px 20px;
   
