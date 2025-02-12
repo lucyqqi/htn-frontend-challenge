@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
 import { Link, useLocation } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import htnLogo from '../assets/images/htnlogo.png'
 
 const Nav = styled.nav`
   position: fixed;
@@ -23,10 +24,15 @@ const NavContent = styled.div`
 `
 
 const Logo = styled(Link)`
-  color: #000;
   text-decoration: none;
-  font-size: 1.25rem;
-  font-weight: 600;
+  display: flex;
+  align-items: center;
+`
+
+const LogoImage = styled.img`
+  height: 32px; // Adjust this value to match the previous text size
+  width: auto;
+  object-fit: contain;
 `
 
 const NavLinks = styled.div`
@@ -36,15 +42,18 @@ const NavLinks = styled.div`
 `
 
 const NavLink = styled(Link)`
-  color: #000;
+  color: #666;
   text-decoration: none;
   font-weight: 500;
-  opacity: ${props => props.$active ? 1 : 0.7};
-  transition: opacity 0.2s;
+  transition: color 0.2s;
 
   &:hover {
-    opacity: 1;
+    color: #4263EB;
   }
+
+  ${props => props.$active && `
+    color: #4263EB;
+  `}
 `
 
 const AuthButton = styled.button`
@@ -69,7 +78,9 @@ export const Navbar = () => {
   return (
     <Nav>
       <NavContent>
-        <Logo to="/">Hack the North</Logo>
+        <Logo to="/">
+          <LogoImage src={htnLogo} alt="Hack the North" />
+        </Logo>
         <NavLinks>
           <NavLink to="/" $active={location.pathname === "/"}>Home</NavLink>
           <NavLink to="/events" $active={location.pathname === "/events"}>Events</NavLink>
