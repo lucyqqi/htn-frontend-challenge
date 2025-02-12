@@ -110,7 +110,7 @@ export const Events = () => {
         style={{
           top: '20%',
           left: '10%',
-          width: '80px',
+          width: '200px',
           animationDelay: '0s'
         }}
       />
@@ -118,9 +118,9 @@ export const Events = () => {
         src={lightbulbImg}
         alt=""
         style={{
-          bottom: '30%',
+          bottom: '10%',
           left: '15%',
-          width: '60px',
+          width: '100px',
           animationDelay: '4s'
         }}
       />
@@ -132,7 +132,7 @@ export const Events = () => {
         style={{
           top: '25%',
           right: '10%',
-          width: '70px',
+          width: '90px',
           animationDelay: '2s'
         }}
       />
@@ -142,7 +142,7 @@ export const Events = () => {
         style={{
           bottom: '25%',
           right: '15%',
-          width: '75px',
+          width: '175px',
           animationDelay: '3s'
         }}
       />
