@@ -9,6 +9,7 @@ import heartImg from '../assets/images/heart.png'
 import lightbulbImg from '../assets/images/lightbulb.png'
 import puzzleImg from '../assets/images/puzzle.png'
 import { SearchBar } from '../components/SearchBar/SearchBar'
+import { FilterBar } from '../components/FilterBar/FilterBar'
 
 const float = keyframes`
   0%, 100% { transform: translateY(0) rotate(0deg); }
@@ -65,7 +66,7 @@ const LoadingText = styled.div`
 
 const ErrorText = styled.div`
   text-align: center;
-  color: #EF4444;
+  color: #4263EB;
   font-size: 1.2rem;
   margin-top: 2rem;
 `
@@ -76,6 +77,7 @@ export const Events = () => {
   const [error, setError] = useState(null)
   const [selectedEvent, setSelectedEvent] = useState(null)
   const [searchQuery, setSearchQuery] = useState('')
+  const [activeFilter, setActiveFilter] = useState('all')
   const { isAuthenticated } = useAuth()
 
   useEffect(() => {
@@ -98,11 +100,16 @@ export const Events = () => {
     fetchEvents()
   }, [])
 
-  // Filter events based on authentication status and search query
+  // Filter events based on authentication status, search query, and event type
   const visibleEvents = events.filter(event => {
+    // Auth check
     const isVisible = isAuthenticated ? true : event.permission === 'public'
     if (!isVisible) return false
     
+    // Event type filter
+    if (activeFilter !== 'all' && event.event_type !== activeFilter) return false
+    
+    // Search query filter
     if (!searchQuery) return true
     
     const searchLower = searchQuery.toLowerCase()
@@ -186,6 +193,10 @@ export const Events = () => {
               value={searchQuery}
               onChange={setSearchQuery}
             />
+            <FilterBar
+              activeFilter={activeFilter}
+              onFilterChange={setActiveFilter}
+            />
             <EventsList 
               role="list" 
               aria-label="Hackathon events"
@@ -200,7 +211,7 @@ export const Events = () => {
                 ))
               ) : (
                 <ErrorText>
-                  No events found matching your search.
+                  No events found matching your criteria.
                 </ErrorText>
               )}
             </EventsList>
