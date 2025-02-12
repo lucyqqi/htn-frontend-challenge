@@ -3,6 +3,7 @@ import { keyframes } from '@emotion/react'
 import planeImg from '../assets/images/plane.png'
 import butterflyImg from '../assets/images/butterfly.png'
 import bubbleImg from '../assets/images/bubble.png'
+import { Users, MapPin, Calendar } from 'lucide-react'
 
 const float = keyframes`
   0%, 100% { transform: translateY(0) rotate(0deg); }
@@ -61,17 +62,56 @@ const FeatureCard = styled.div`
   background: white;
   padding: 2rem;
   border-radius: 1rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
   
-  h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: #4263EB;
+  &:hover {
+    background: rgba(255, 255, 255, 0.8);
   }
-  
-  p {
-    color: #666;
+`
+
+const IconWrapper = styled.div`
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  background: ${props => {
+    switch (props.type) {
+      case 'primary': return 'rgba(66, 99, 235, 0.1)';
+      case 'secondary': return 'rgba(124, 58, 237, 0.1)';
+      case 'accent': return 'rgba(244, 114, 182, 0.1)';
+      default: return 'rgba(66, 99, 235, 0.1)';
+    }
+  }};
+
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: ${props => {
+      switch (props.type) {
+        case 'primary': return '#4263EB';
+        case 'secondary': return '#7C3AED';
+        case 'accent': return '#F472B6';
+        default: return '#4263EB';
+      }
+    }};
   }
+`
+
+const FeatureTitle = styled.h3`
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  color: #1a1a1a;
+`
+
+const FeatureText = styled.p`
+  color: #666;
+  text-align: center;
+  line-height: 1.6;
 `
 
 export const Home = () => {
@@ -116,16 +156,33 @@ export const Home = () => {
 
         <FeaturesGrid>
           <FeatureCard>
-            <h3>1000+ Hackers</h3>
-            <p>Join brilliant minds from around the world for 36 hours of creation, innovation, and fun.</p>
+            <IconWrapper type="primary">
+              <Users />
+            </IconWrapper>
+            <FeatureTitle>1000+ Hackers</FeatureTitle>
+            <FeatureText>
+              Join brilliant minds from around the world for 36 hours of creation, innovation, and fun.
+            </FeatureText>
           </FeatureCard>
+
           <FeatureCard>
-            <h3>In-Person Event</h3>
-            <p>Experience the energy of in-person collaboration at University of Waterloo.</p>
+            <IconWrapper type="secondary">
+              <MapPin />
+            </IconWrapper>
+            <FeatureTitle>In-Person Event</FeatureTitle>
+            <FeatureText>
+              Experience the energy of in-person collaboration at University of Waterloo.
+            </FeatureText>
           </FeatureCard>
+
           <FeatureCard>
-            <h3>36 Hours</h3>
-            <p>Turn your ideas into reality with workshops, mentorship, and amazing prizes.</p>
+            <IconWrapper type="accent">
+              <Calendar />
+            </IconWrapper>
+            <FeatureTitle>36 Hours</FeatureTitle>
+            <FeatureText>
+              Turn your ideas into reality with workshops, mentorship, and amazing prizes.
+            </FeatureText>
           </FeatureCard>
         </FeaturesGrid>
       </ContentWrapper>
