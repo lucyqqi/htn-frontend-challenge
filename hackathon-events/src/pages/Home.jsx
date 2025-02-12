@@ -4,7 +4,6 @@ import { FloatingDecorations } from '../components/FloatingDecorations'
 
 const HomeContainer = styled.div`
   min-height: 100vh;
-  background: #FDF6F0;
   position: relative;
   overflow: hidden;
   padding-top: 80px;

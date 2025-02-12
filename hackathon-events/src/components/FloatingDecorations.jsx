@@ -38,7 +38,7 @@ const decorations = [
   {
     src: bubbleImg,
     style: {
-      top: '50%',
+      top: '40%',
       left: '20%',
       width: '120px',
       animationDelay: '4s'
