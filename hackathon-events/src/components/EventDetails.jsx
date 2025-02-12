@@ -1,20 +1,19 @@
 import styled from '@emotion/styled'
 import { formatDate } from '../utils/dateFormatter'
-import { EventType } from '../styles/theme'
 
 const DetailsContainer = styled.div`
   width: 100%;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+  background: white;
   border-radius: 16px;
   padding: 32px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: #1a1a1a;
 `
 
 const BackButton = styled.button`
-  background: transparent;
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: white;
+  color: #4263EB;
+  border: 1px solid #4263EB;
   padding: 0.5rem 1rem;
   border-radius: 8px;
   cursor: pointer;
@@ -22,23 +21,25 @@ const BackButton = styled.button`
   transition: all 0.3s ease;
 
   &:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: #4263EB;
+    color: white;
   }
 `
 
 const RelatedEvents = styled.div`
   margin-top: 2rem;
   padding-top: 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 
   h3 {
     margin-bottom: 1rem;
+    color: #1a1a1a;
   }
 `
 
 const RelatedEventLink = styled.button`
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
+  background: #f3f4f6;
+  color: #4263EB;
   border: none;
   padding: 0.5rem 1rem;
   margin: 0.5rem;
@@ -47,19 +48,51 @@ const RelatedEventLink = styled.button`
   transition: all 0.3s ease;
 
   &:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: #4263EB;
+    color: white;
   }
 `
 
 const ContentSection = styled.div`
   margin: 1rem 0;
   line-height: 1.6;
+  color: #4B5563;
+
+  strong {
+    color: #1a1a1a;
+  }
 `
 
 const Title = styled.h2`
   font-size: 1.8rem;
   margin: 1rem 0;
+  color: #1a1a1a;
 `
+
+const EventType = styled.span`
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  background: ${props => {
+    switch (props.type) {
+      case 'tech_talk': return '#10B981';
+      case 'workshop': return '#6366F1';
+      case 'activity': return '#F59E0B';
+      default: return '#6B7280';
+    }
+  }};
+  color: white;
+  margin-bottom: 1rem;
+`
+
+const formatEventType = (type) => {
+  return type
+    .split('_')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ')
+}
 
 export const EventDetails = ({ event, onBack, onSelectEvent, allEvents }) => {
   const { 
@@ -81,7 +114,9 @@ export const EventDetails = ({ event, onBack, onSelectEvent, allEvents }) => {
       <BackButton onClick={onBack}>&larr; Back to Events</BackButton>
       
       <Title>{name}</Title>
-      <EventType type={event_type}>{event_type.replace('_', ' ')}</EventType>
+      <EventType type={event_type}>
+        {formatEventType(event_type)}
+      </EventType>
       
       <ContentSection>
         <p><strong>Start:</strong> {formatDate(start_time)}</p>
@@ -91,7 +126,7 @@ export const EventDetails = ({ event, onBack, onSelectEvent, allEvents }) => {
 
       {speakers?.length > 0 && (
         <ContentSection>
-          <h3>Speakers</h3>
+          <h3 style={{ color: '#1a1a1a', marginBottom: '0.5rem' }}>Speakers</h3>
           {speakers.map((speaker, index) => (
             <p key={index}>{speaker.name}</p>
           ))}
