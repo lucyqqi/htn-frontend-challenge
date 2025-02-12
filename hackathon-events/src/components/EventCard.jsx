@@ -1,74 +1,17 @@
-import styled from '@emotion/styled'
 import { formatDate } from '../utils/dateFormatter'
+import {
+  Card,
+  Title,
+  EventType,
+  EventInfo,
+  SpeakerSection
+} from './EventCard.styles'
 
-const Card = styled.article`
-  background: white;
-  border-radius: 16px;
-  padding: 24px;
-  margin: 20px 0;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
-  }
-
-  @media (max-width: 768px) {
-    padding: 20px;
-  }
-`
-
-const Title = styled.h2`
-  color: #1a1a1a;
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-`
-
-const EventType = styled.span`
-  display: inline-block;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 0.875rem;
-  font-weight: 500;
-  background: ${props => {
-    switch (props.type) {
-      case 'tech_talk': return '#10B981';
-      case 'workshop': return '#6366F1';
-      case 'activity': return '#F59E0B';
-      default: return '#6B7280';
-    }
-  }};
-  color: white;
-  margin-bottom: 1rem;
-`
-
-const EventInfo = styled.div`
-  margin: 1rem 0;
-  color: #4B5563;
-  
-  p {
-    margin: 0.5rem 0;
-    line-height: 1.6;
-  }
-
-  strong {
-    color: #1a1a1a;
-  }
-`
-
-const SpeakerSection = styled.div`
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-  color: #4B5563;
-
-  strong {
-    color: #1a1a1a;
-  }
-`
-
+/**
+ * Formats an event type string from snake_case to Title Case
+ * @param {string} type - The event type in snake_case format
+ * @returns {string} The formatted event type in Title Case
+ */
 const formatEventType = (type) => {
   return type
     .split('_')
@@ -76,6 +19,17 @@ const formatEventType = (type) => {
     .join(' ')
 }
 
+/**
+ * EventCard component displays information about a single event
+ * @param {Object} props
+ * @param {Object} props.event - The event data object
+ * @param {string} props.event.name - Event name
+ * @param {string} props.event.event_type - Type of event (tech_talk, workshop, activity)
+ * @param {string} props.event.start_time - Event start time
+ * @param {string} props.event.description - Event description
+ * @param {Array<Object>} props.event.speakers - Array of speaker objects
+ * @param {Function} props.onClick - Click handler for the card
+ */
 export const EventCard = ({ event, onClick }) => {
   const { name, event_type, start_time, description, speakers } = event
 
