@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { useEventDetails } from '../hooks/useEventDetails'
 import { formatDate } from '../utils/dateFormatter'
 
 const DetailsContainer = styled.div`
@@ -95,6 +96,11 @@ const formatEventType = (type) => {
 }
 
 export const EventDetails = ({ event, onBack, onSelectEvent, allEvents }) => {
+  const { eventDetails, relatedEventDetails } = useEventDetails({ 
+    event, 
+    allEvents 
+  })
+
   const { 
     name, 
     event_type, 
@@ -102,12 +108,8 @@ export const EventDetails = ({ event, onBack, onSelectEvent, allEvents }) => {
     end_time,
     description, 
     speakers,
-    related_events 
-  } = event
-
-  const relatedEventDetails = related_events
-    ?.map(id => allEvents.find(e => e.id === id))
-    .filter(Boolean) || []
+    formattedEventType 
+  } = eventDetails
 
   return (
     <DetailsContainer>
@@ -115,7 +117,7 @@ export const EventDetails = ({ event, onBack, onSelectEvent, allEvents }) => {
       
       <Title>{name}</Title>
       <EventType type={event_type}>
-        {formatEventType(event_type)}
+        {formattedEventType}
       </EventType>
       
       <ContentSection>
