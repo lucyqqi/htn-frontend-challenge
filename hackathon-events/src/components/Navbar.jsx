@@ -1,42 +1,44 @@
 import styled from '@emotion/styled'
-import { useAuth } from '../context/AuthContext'
 import { Link, useLocation } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext'
 
 const Nav = styled.nav`
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(27, 42, 78, 0.8);
-  backdrop-filter: blur(10px);
+  background: white;
   padding: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   z-index: 1000;
 `
 
 const NavContent = styled.div`
-  width: 70%;
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 0 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 `
 
 const Logo = styled(Link)`
-  color: white;
+  color: #000;
   text-decoration: none;
-  font-size: 1.5rem;
-  font-weight: bold;
+  font-size: 1.25rem;
+  font-weight: 600;
 `
 
 const NavLinks = styled.div`
   display: flex;
-  gap: 2rem;
   align-items: center;
+  gap: 2rem;
 `
 
 const NavLink = styled(Link)`
-  color: white;
+  color: #000;
   text-decoration: none;
+  font-weight: 500;
   opacity: ${props => props.$active ? 1 : 0.7};
   transition: opacity 0.2s;
 
@@ -46,17 +48,17 @@ const NavLink = styled(Link)`
 `
 
 const AuthButton = styled.button`
-  background: #4285f4;
+  background: #4263EB;
   color: white;
   border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
   cursor: pointer;
-  font-size: 1rem;
   transition: background-color 0.2s;
 
   &:hover {
-    background: #357abd;
+    background: #3451c9;
   }
 `
 
@@ -64,26 +66,14 @@ export const Navbar = () => {
   const { user, signInWithGoogle, signOut } = useAuth()
   const location = useLocation()
 
-  const handleAuth = async () => {
-    if (user) {
-      await signOut()
-    } else {
-      try {
-        await signInWithGoogle()
-      } catch (error) {
-        console.error('Authentication error:', error)
-      }
-    }
-  }
-
   return (
     <Nav>
       <NavContent>
-        <Logo to="/">Hack The North</Logo>
+        <Logo to="/">Hack the North</Logo>
         <NavLinks>
           <NavLink to="/" $active={location.pathname === "/"}>Home</NavLink>
           <NavLink to="/events" $active={location.pathname === "/events"}>Events</NavLink>
-          <AuthButton onClick={handleAuth}>
+          <AuthButton onClick={user ? signOut : signInWithGoogle}>
             {user ? 'Sign Out' : 'Sign in with Google'}
           </AuthButton>
         </NavLinks>
