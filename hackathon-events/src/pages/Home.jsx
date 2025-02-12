@@ -20,7 +20,7 @@ const HomeContainer = styled.div`
 const ContentWrapper = styled.div`
   max-width: 1200px;
   margin: 0 auto;
-  padding: 4rem 2rem;
+  padding: 8rem 2rem 4rem;
   text-align: center;
   position: relative;
   z-index: 2;
@@ -82,7 +82,7 @@ export const Home = () => {
         alt=""
         style={{
           top: '15%',
-          left: '10%',
+          left: '5%',
           width: '120px',
           animationDelay: '0s'
         }}
@@ -101,9 +101,9 @@ export const Home = () => {
         src={bubbleImg}
         alt=""
         style={{
-          bottom: '20%',
+          top: '50%',
           left: '20%',
-          width: '80px',
+          width: '120px',
           animationDelay: '4s'
         }}
       />
@@ -111,7 +111,7 @@ export const Home = () => {
       <ContentWrapper>
         <Title>Canada's Biggest Hackathon</Title>
         <Subtitle>
-          September 13-15, 2024 • In-person event • MLH Official Member
+          September 13-15, 2025 • MLH Official Member
         </Subtitle>
 
         <FeaturesGrid>
