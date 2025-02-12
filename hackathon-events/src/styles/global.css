@@ -21,7 +21,7 @@
   }
   
   #root {
-    width: 90%; /* This will make all content take 70% of the page width */
+    width: 55%; /* This will make all content take 70% of the page width */
     display: flex;
     flex-direction: column;
   }

@@ -1,83 +1,93 @@
 import styled from '@emotion/styled'
 import { useAuth } from '../context/AuthContext'
+import { Link, useLocation } from 'react-router-dom'
 
 const Nav = styled.nav`
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  padding: 1rem 2rem;
-  background: rgba(27, 42, 78, 0.95);
+  background: rgba(27, 42, 78, 0.8);
   backdrop-filter: blur(10px);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  padding: 1rem 0;
   z-index: 1000;
 `
 
-const Logo = styled.h1`
-  font-size: 1.5rem;
+const NavContent = styled.div`
+  width: 70%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`
+
+const Logo = styled(Link)`
   color: white;
-  margin: 0;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bold;
 `
 
-const AuthSection = styled.div`
+const NavLinks = styled.div`
   display: flex;
+  gap: 2rem;
   align-items: center;
-  gap: 1rem;
 `
 
-const UserInfo = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-`
+const NavLink = styled(Link)`
+  color: white;
+  text-decoration: none;
+  opacity: ${props => props.$active ? 1 : 0.7};
+  transition: opacity 0.2s;
 
-const UserAvatar = styled.img`
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
+  &:hover {
+    opacity: 1;
+  }
 `
 
 const AuthButton = styled.button`
-  background: ${props => props.variant === 'logout' ? 'transparent' : '#646cff'};
+  background: #4285f4;
   color: white;
-  border: ${props => props.variant === 'logout' ? '1px solid rgba(255,255,255,0.2)' : 'none'};
-  padding: 0.5rem 1.5rem;
-  border-radius: 8px;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  font-size: 1rem;
+  transition: background-color 0.2s;
 
   &:hover {
-    background: ${props => props.variant === 'logout' ? 'rgba(255,255,255,0.1)' : '#7c82ff'};
+    background: #357abd;
   }
 `
 
 export const Navbar = () => {
-  const { isAuthenticated, user, login, logout } = useAuth()
+  const { user, signInWithGoogle, signOut } = useAuth()
+  const location = useLocation()
+
+  const handleAuth = async () => {
+    if (user) {
+      await signOut()
+    } else {
+      try {
+        await signInWithGoogle()
+      } catch (error) {
+        console.error('Authentication error:', error)
+      }
+    }
+  }
 
   return (
     <Nav>
-      <Logo>Hackathon Events</Logo>
-      <AuthSection>
-        {isAuthenticated ? (
-          <>
-            <UserInfo>
-              {user?.photoURL && (
-                <UserAvatar src={user.photoURL} alt={user.displayName} />
-              )}
-              <span>{user?.displayName}</span>
-            </UserInfo>
-            <AuthButton variant="logout" onClick={logout}>
-              Logout
-            </AuthButton>
-          </>
-        ) : (
-          <AuthButton onClick={login}>
-            Sign in with Google
+      <NavContent>
+        <Logo to="/">Hack The North</Logo>
+        <NavLinks>
+          <NavLink to="/" $active={location.pathname === "/"}>Home</NavLink>
+          <NavLink to="/events" $active={location.pathname === "/events"}>Events</NavLink>
+          <AuthButton onClick={handleAuth}>
+            {user ? 'Sign Out' : 'Sign in with Google'}
           </AuthButton>
-        )}
-      </AuthSection>
+        </NavLinks>
+      </NavContent>
     </Nav>
   )
-} 
+}
