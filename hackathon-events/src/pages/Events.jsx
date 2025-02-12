@@ -8,6 +8,7 @@ import cubeImg from '../assets/images/cube.png'
 import heartImg from '../assets/images/heart.png'
 import lightbulbImg from '../assets/images/lightbulb.png'
 import puzzleImg from '../assets/images/puzzle.png'
+import { SearchBar } from '../components/SearchBar/SearchBar'
 
 const float = keyframes`
   0%, 100% { transform: translateY(0) rotate(0deg); }
@@ -74,6 +75,7 @@ export const Events = () => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [selectedEvent, setSelectedEvent] = useState(null)
+  const [searchQuery, setSearchQuery] = useState('')
   const { isAuthenticated } = useAuth()
 
   useEffect(() => {
@@ -96,10 +98,23 @@ export const Events = () => {
     fetchEvents()
   }, [])
 
-  // Filter events based on authentication status
-  const visibleEvents = events.filter(event => 
-    isAuthenticated ? true : event.permission === 'public'
-  )
+  // Filter events based on authentication status and search query
+  const visibleEvents = events.filter(event => {
+    const isVisible = isAuthenticated ? true : event.permission === 'public'
+    if (!isVisible) return false
+    
+    if (!searchQuery) return true
+    
+    const searchLower = searchQuery.toLowerCase()
+    return (
+      event.name.toLowerCase().includes(searchLower) ||
+      event.description?.toLowerCase().includes(searchLower) ||
+      event.event_type.toLowerCase().includes(searchLower) ||
+      event.speakers?.some(speaker => 
+        speaker.name.toLowerCase().includes(searchLower)
+      )
+    )
+  })
 
   return (
     <EventsContainer>
@@ -166,15 +181,30 @@ export const Events = () => {
             allEvents={events}
           />
         ) : (
-          <EventsList role="list" aria-label="Hackathon events">
-            {visibleEvents.map((event) => (
-              <EventCard 
-                key={event.id} 
-                event={event}
-                onClick={() => setSelectedEvent(event)}
-              />
-            ))}
-          </EventsList>
+          <>
+            <SearchBar 
+              value={searchQuery}
+              onChange={setSearchQuery}
+            />
+            <EventsList 
+              role="list" 
+              aria-label="Hackathon events"
+            >
+              {visibleEvents.length > 0 ? (
+                visibleEvents.map((event) => (
+                  <EventCard 
+                    key={event.id} 
+                    event={event}
+                    onClick={() => setSelectedEvent(event)}
+                  />
+                ))
+              ) : (
+                <ErrorText>
+                  No events found matching your search.
+                </ErrorText>
+              )}
+            </EventsList>
+          </>
         )}
       </ContentWrapper>
     </EventsContainer>
