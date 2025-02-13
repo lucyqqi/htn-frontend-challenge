@@ -3,11 +3,35 @@
  * Serves as the main landing page of the application
  */
 
-import { Hero } from '../components/Hero/Hero'
+import styled from '@emotion/styled'
+import { Features } from '../components/Features/Features'
+import { FloatingDecorations } from '../components/FloatingDecorations/FloatingDecorations'
+import { HeroText } from '../components/HeroText/HeroText'
 
 /**
- * Home page component that composes the main landing page
- * Currently renders the Hero section, can be extended with more sections
+ * Container for the entire home page
+ */
+const HomeContainer = styled.div`
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+`
+
+/**
+ * Wrapper for the main content
+ * Increased top padding from 8rem to 10rem for better spacing from navbar
+ */
+const ContentWrapper = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 14rem 2rem 16rem;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+`
+
+/**
+ * Home page component that composes the main landing page sections
  * 
  * @component
  * @example
@@ -16,5 +40,13 @@ import { Hero } from '../components/Hero/Hero'
  * )
  */
 export const Home = () => {
-  return <Hero />
+  return (
+    <HomeContainer>
+      <FloatingDecorations />
+      <ContentWrapper>
+        <HeroText />
+        <Features />
+      </ContentWrapper>
+    </HomeContainer>
+  )
 } 
