@@ -1,21 +1,8 @@
 # Hack the North 2025 Frontend Challenge
 
-#### Live Demo
 [View Live Demo](https://htn-frontend-challenge-one.vercel.app/)
 
-## Implementation
-
-### Features
-- Responsive design that works across all devices
-- Authentication system for private events
-- Search functionality for events
-- Event type filtering
-- Chronological event sorting
-- Related events linking
-
-## Development Process & Writeup
-
-### 1. Development Process
+## 1. Development Process
 
 I started this project by thinking from the user perspective: I sketched some initial designs in Procreate and taking some inspiration from the 2024 Hack the North website styling and Notion components, I had a plan! 
 
@@ -61,7 +48,7 @@ I chose React + Vite for the tech stack because it's a popular and performant fr
 #### Code I'm Proud Of
 I'm particularly proud of the visual elements I incorporated this time around. I enjoyed trying something new with a light mode theme instead of my usual dark gradients, and I think the floating 3D decorations were a nice touch. I'm also proud of how I organized the events this year, as the layout is clean and visually appealing.
 
-### 2. Future Extensions
+## 2. Future Extensions
 
 If I had more time, I'd love to add:
 
