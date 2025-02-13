@@ -9,6 +9,13 @@ import {
   Title
 } from './EventsLayout.styles'
 
+/**
+ * EventsLayout component that provides a layout for the events page
+ * 
+ * @component
+ * @param {Object} props - Component props
+ * @param {ReactNode} props.children - Child components to render inside the layout
+ * */
 export const EventsLayout = ({ children }) => {
   return (
     <EventsContainer>

@@ -1,6 +1,5 @@
 /**
  * @fileoverview FloatingDecorations component that adds animated decorative elements
- * to the page background for visual interest
  */
 
 import planeImg from '../../assets/images/plane.png'

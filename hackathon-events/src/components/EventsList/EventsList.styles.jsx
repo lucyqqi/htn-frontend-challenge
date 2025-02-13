@@ -1,9 +1,13 @@
 /**
  * @fileoverview Styled components for the events list
+ * Implements layout and styling for the event cards container and error messaging
  */
 
 import styled from '@emotion/styled'
 
+/**
+ * Container component for the list of event cards
+ */
 export const EventsList = styled.div`
   display: flex;
   flex-direction: column;
@@ -12,6 +16,9 @@ export const EventsList = styled.div`
   position: relative;
 `
 
+/**
+ * Error message component for empty states
+ */
 export const ErrorText = styled.div`
   text-align: center;
   color: #4263EB;

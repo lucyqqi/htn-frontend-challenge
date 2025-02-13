@@ -19,12 +19,6 @@ const float = keyframes`
  * Styled image component with floating animation
  * Positioned absolutely and ignores pointer events
  * 
- * Features:
- * - Absolute positioning
- * - Infinite floating animation
- * - Smooth transitions
- * - No pointer events to prevent interference with underlying elements
- * - Z-index to ensure proper layering
  */
 export const FloatingImage = styled.img`
   position: absolute;
