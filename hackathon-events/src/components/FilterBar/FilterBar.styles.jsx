@@ -2,7 +2,6 @@ import styled from '@emotion/styled'
 
 /**
  * Container component for the filter buttons.
- * 
  */
 export const FilterContainer = styled.div`
   display: flex;

@@ -29,6 +29,9 @@ const breakpoints = {
   mobile: '768px',
 }
 
+/**
+ * Main navigation container
+ */
 export const Nav = styled.nav`
   position: fixed;
   top: 0;
@@ -40,6 +43,9 @@ export const Nav = styled.nav`
   z-index: 1000;
 `
 
+/**
+ * Content wrapper for navigation elements
+ */
 export const NavContent = styled.div`
   max-width: 1200px;
   margin: 0 auto;
@@ -50,6 +56,9 @@ export const NavContent = styled.div`
   position: relative;
 `
 
+/**
+ * Logo link component
+ */
 export const Logo = styled(Link)`
   text-decoration: none;
   display: flex;
@@ -57,12 +66,19 @@ export const Logo = styled(Link)`
   z-index: 1001; // Keep logo above mobile menu
 `
 
+/**
+ * Logo image styling
+ */
 export const LogoImage = styled.img`
   height: 32px;
   width: auto;
   object-fit: contain;
 `
 
+/**
+ * Navigation links container
+ * @param {boolean} $isOpen - Controls mobile menu visibility
+ */
 export const NavLinks = styled.div`
   display: flex;
   align-items: center;
@@ -83,6 +99,10 @@ export const NavLinks = styled.div`
   }
 `
 
+/**
+ * Individual navigation link
+ * @param {boolean} $active - Indicates if route is active
+ */
 export const NavLink = styled(Link)`
   color: #666;
   text-decoration: none;
@@ -98,6 +118,9 @@ export const NavLink = styled(Link)`
   `}
 `
 
+/**
+ * Authentication button
+ */
 export const AuthButton = styled.button`
   background: #4263EB;
   color: white;
@@ -117,6 +140,9 @@ export const AuthButton = styled.button`
   }
 `
 
+/**
+ * Mobile menu toggle button
+ */
 export const MobileMenuButton = styled.button`
   display: none;
   flex-direction: column;
@@ -142,6 +168,10 @@ export const MobileMenuButton = styled.button`
   }
 `
 
+/**
+ * Mobile menu overlay
+ * @param {boolean} $isOpen - Controls menu visibility
+ */
 export const MobileMenu = styled.div`
   display: none;
   

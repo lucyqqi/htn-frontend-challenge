@@ -2,8 +2,6 @@ import styled from '@emotion/styled'
 
 /**
  * Theme configuration object containing all color values used across the EventCard component.
- * Centralizing these values makes it easier to maintain consistent styling and implement
- * theme switching in the future.
  */
 const theme = {
   colors: {
@@ -20,7 +18,6 @@ const theme = {
 
 /**
  * Reusable transition styles for interactive elements.
- * Provides smooth animation for both transform and shadow properties.
  */
 const baseTransition = `
   transition: transform 0.2s, box-shadow 0.2s;
@@ -35,7 +32,6 @@ const getEventTypeColor = (type) => theme.colors.eventTypes[type] || theme.color
 
 /**
  * Main container component for the event card.
- * Implements hover and focus interactions with smooth transitions.
  */
 export const Card = styled.article`
   background: white;
@@ -67,7 +63,6 @@ export const Title = styled.h2`
 
 /**
  * Badge component for displaying event type.
- * Uses dynamic background colors based on event type.
  */
 export const EventType = styled.span`
   display: inline-block;
@@ -82,7 +77,6 @@ export const EventType = styled.span`
 
 /**
  * Container for event details like time and description.
- * Implements consistent text styling and spacing.
  */
 export const EventInfo = styled.div`
   margin: 1rem 0;
@@ -100,7 +94,6 @@ export const EventInfo = styled.div`
 
 /**
  * Section for displaying speaker information.
- * Includes a subtle top border to separate it from other content.
  */
 export const SpeakerSection = styled.div`
   margin-top: 1rem;

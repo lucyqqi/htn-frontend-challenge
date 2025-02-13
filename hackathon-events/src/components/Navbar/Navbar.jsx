@@ -18,16 +18,30 @@ import {
   MobileMenu
 } from './Navbar.styles'
 
+/**
+ * Navbar component providing responsive navigation and authentication controls
+ * 
+ * @component
+ * @example
+ * return (
+ *   <Navbar />
+ * )
+ */
 export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const { user, signInWithGoogle, signOut } = useAuth()
   const location = useLocation()
 
+  /**
+   * Toggles the mobile menu state
+   * @function
+   */
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen)
 
   return (
     <Nav>
       <NavContent>
+        {/* Logo and Home Link */}
         <Logo to="/">
           <LogoImage src={htnLogo} alt="Hack the North" />
         </Logo>
@@ -39,7 +53,7 @@ export const Navbar = () => {
           <span></span>
         </MobileMenuButton>
 
-        {/* Desktop & Mobile Navigation */}
+        {/* Navigation Links and Auth Button */}
         <NavLinks $isOpen={isMobileMenuOpen}>
           <NavLink 
             to="/" 

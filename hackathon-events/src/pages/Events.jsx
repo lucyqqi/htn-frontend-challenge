@@ -1,5 +1,5 @@
 /**
- * @fileoverview Main events page component
+ * @fileoverview Main events page component that handles event fetching, filtering, and display
  */
 
 import { useState, useEffect } from 'react'
@@ -10,12 +10,33 @@ import { SearchBar } from '../components/SearchBar/SearchBar'
 import { FilterBar } from '../components/FilterBar/FilterBar'
 import { useEventFiltering } from '../hooks/useEventFiltering'
 
+/**
+ * Main Events page component that manages event data and view states.
+ * Handles fetching events from API, filtering, searching, and displaying either
+ * the events list or detailed view of a selected event.
+ * 
+ * @component
+ * @returns {JSX.Element} Events page component
+ */
 export const Events = () => {
+  /** @type {[Array, Function]} Events data and setter */
   const [events, setEvents] = useState([])
+  /** @type {[boolean, Function]} Loading state and setter */
   const [loading, setLoading] = useState(true)
+  /** @type {[string|null, Function]} Error state and setter */
   const [error, setError] = useState(null)
+  /** @type {[Object|null, Function]} Selected event for detailed view and setter */
   const [selectedEvent, setSelectedEvent] = useState(null)
   
+  /**
+   * Custom hook that provides filtering and search functionality
+   * @type {Object} Filter state and methods
+   * @property {string} searchQuery - Current search term
+   * @property {Function} setSearchQuery - Search term setter
+   * @property {string} activeFilter - Current active filter
+   * @property {Function} setActiveFilter - Filter setter
+   * @property {Array} visibleEvents - Filtered and searched events list
+   */
   const {
     searchQuery,
     setSearchQuery,
@@ -24,6 +45,10 @@ export const Events = () => {
     visibleEvents
   } = useEventFiltering(events)
 
+  /**
+   * Fetches events from the API on component mount
+   * Sorts events by start time and handles loading/error states
+   */
   useEffect(() => {
     const fetchEvents = async () => {
       try {

@@ -19,7 +19,6 @@ const HomeContainer = styled.div`
 
 /**
  * Wrapper for the main content
- * Increased top padding from 8rem to 10rem for better spacing from navbar
  */
 const ContentWrapper = styled.div`
   max-width: 1200px;

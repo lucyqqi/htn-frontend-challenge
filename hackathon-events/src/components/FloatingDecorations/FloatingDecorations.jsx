@@ -42,7 +42,6 @@ const decorations = [
 
 /**
  * FloatingDecorations component renders animated decorative images
- * that float in the background of the page
  * 
  * @component
  * @example
