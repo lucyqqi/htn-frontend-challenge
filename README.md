@@ -72,6 +72,6 @@ If I had more time, I'd love to add:
    - Real-time updates with WebSocket integration
    - Calendar export functionality
 
-### 3. Additional Thoughts
+## 3. Additional Thoughts
 
 Looking back at my previous frontend challenge ([last year's submission](https://htn-frontend-awn7.vercel.app/)), I think hopefully this year's is better. This time around, I focused on not just making things work, but making them work well. The documentation is much more comprehensive, the UI is more polished, and I managed to get more of the core features working robustly. While I know I still have lots to learn, I'm pretty happy with how I've grown!
