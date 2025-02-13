@@ -1,6 +1,6 @@
 # Hack the North 2025 Frontend Challenge
 
-## Live Demo
+#### Live Demo
 [View Live Demo](https://htn-frontend-challenge-one.vercel.app/)
 
 ## Implementation
@@ -21,11 +21,11 @@ I started this project by thinking from the user perspective: I sketched some in
 
 #### Planning & Structure
 
-I broke everything down into reusable components, each with its own folder containing the component file and its styles. This separation made it easier to maintain and update specific parts of the application. For example, when I needed to update the event card design, I could focus just on the EventCard folder without touching other components. I might want to put the events in a folder while this application scales up to keep track of all components, but for now I kept it as is.
+I broke everything down into reusable components, each with its own folder containing the component file and its styles. This separation made it easier to maintain and update specific parts of the application. For example, when I needed to update the event card design, I could focus just on the EventCard folder without touching other components. I might want to put the event components in a folder called events alter when this application scales up for better organization, but for now I kept it as is.
 
 The utils folder contains helper functions like date formatting and constants, while the hooks folder has custom hooks for data fetching and event filtering. I tried following best practices, so when I needed to fix something, I knew where to look. 
 
-### Tech Stack
+#### Tech Stack
 
 I chose React + Vite for the tech stack because it's a popular and performant framework for building modern web applications. Emotion was chosen for its powerful styling capabilities and the ability to write CSS in JavaScript. React Router was used for navigation between pages, and Javascript was just something I was comfortable with.
 
@@ -59,7 +59,7 @@ I chose React + Vite for the tech stack because it's a popular and performant fr
    - Added smooth transitions for the mobile menu to improve the user experience
 
 #### Code I'm Proud Of
-I'm particularly proud of the visual elements I incorporated this time around. I enjoyed trying something new with a light mode theme instead of my usual dark gradients, and the floating decorations added a playful touch to the landing page. The combination of Emotion for styling and the carefully selected icons helped create a clean, modern look while maintaining good performance. The smooth transitions and animations, especially in the mobile menu and event cards, really helped elevate the user experience.
+I'm particularly proud of the visual elements I incorporated this time around. I enjoyed trying something new with a light mode theme instead of my usual dark gradients, and I think the floating 3D decorations were a nice touch. I'm also proud of how I organized the events this year, as the layout is clean and visually appealing.
 
 ### 2. Future Extensions
 
@@ -87,6 +87,4 @@ If I had more time, I'd love to add:
 
 ### 3. Additional Thoughts
 
-Looking back at my previous frontend challenge ([last year's submission](https://htn-frontend-awn7.vercel.app/)), I think hopefully this year's is better. This time around, I focused on not just making things work, but making them work well. The documentation is much more comprehensive, the UI is more polished, and I managed to get more of the core features working robustly. While I know I still have lots to learn, I'm proud that I'm been spending time working on my skills and I'm starting to understand more of the concepts.
-
-Throughout this project, I focused on creating code that other developers would enjoy working with. I made sure to document everything clearly and kept the codebase clean and organized. 
+Looking back at my previous frontend challenge ([last year's submission](https://htn-frontend-awn7.vercel.app/)), I think hopefully this year's is better. This time around, I focused on not just making things work, but making them work well. The documentation is much more comprehensive, the UI is more polished, and I managed to get more of the core features working robustly. While I know I still have lots to learn, I'm pretty happy with how I've grown!
