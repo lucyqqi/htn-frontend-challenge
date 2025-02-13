@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import { Features } from '../components/Features/Features'
-import { FloatingDecorations } from '../components/FloatingDecorations'
+import { FloatingDecorations } from '../components/FloatingDecorations/FloatingDecorations'
 
 const HomeContainer = styled.div`
   min-height: 100vh;
