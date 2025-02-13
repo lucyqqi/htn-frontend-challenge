@@ -2,8 +2,6 @@ import styled from '@emotion/styled'
 
 /**
  * Theme configuration object containing all color values used across the EventDetails component.
- * Centralizing these values makes it easier to maintain consistent styling and implement
- * theme switching in the future.
  */
 const theme = {
   colors: {
