@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { Features } from '../components/Features'
+import { Features } from '../components/Features/Features'
 import { FloatingDecorations } from '../components/FloatingDecorations'
 
 const HomeContainer = styled.div`
