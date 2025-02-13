@@ -2,6 +2,12 @@
 
 [View Live Demo](https://htn-frontend-challenge-one.vercel.app/)
 
+<img width="1914" alt="image" src="https://github.com/user-attachments/assets/5a80c967-745a-43ec-a531-eec33f64410f" />
+<img width="1914" alt="image" src="https://github.com/user-attachments/assets/1cf8ef8a-a21e-44a7-a40b-4dacae80b6e0" />
+<img width="1914" alt="image" src="https://github.com/user-attachments/assets/199e5b09-b5a1-4ab1-98d9-cae787739ebb" />
+
+
+
 ## 1. Development Process
 
 I started this project by thinking from the user perspective: I sketched some initial designs in Procreate and taking some inspiration from the 2024 Hack the North website styling and Notion components, I had a plan! 
