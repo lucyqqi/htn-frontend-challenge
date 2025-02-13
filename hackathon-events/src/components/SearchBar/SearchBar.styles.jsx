@@ -1,11 +1,17 @@
 import styled from '@emotion/styled'
 
+/**
+ * Container component for the search input.
+ */
 export const SearchContainer = styled.div`
   margin: 0 auto 2rem;
   max-width: 500px;
   width: 100%;
 `
 
+/**
+ * Styled input component for search functionality.
+ */
 export const SearchInput = styled.input`
   width: 100%;
   padding: 12px 20px;
@@ -13,7 +19,7 @@ export const SearchInput = styled.input`
   border-radius: 12px;
   font-size: 1rem;
   background: white;
-  color: #9CA3AF;
+  color: #1a1a1a;
   transition: all 0.3s ease;
 
   &:focus {
